@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>La Clair Surabaya — Custom Birthday Cakes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --pink:      #c97a8a;
+      --pink-dk:   #ad5f70;
+      --pink-lt:   #e8b4be;
+      --blush:     #f2d4d8;
+      --gold:      #c9a96e;
+      --bg:        #fdf8f6;
+      --bg2:       #faf1ee;
+      --bg3:       #f5e6e2;
+      --dark:      #2a1a1a;
+      --brown:     #6b4a4a;
+      --muted:     #a88080;
+      --border:    #ecd6d2;
+      --white:     #ffffff;
+      --serif:     'Fraunces', Georgia, serif;
+      --sans:      'Nunito', sans-serif;
+      --radius:    14px;
+      --shadow:    0 4px 24px rgba(180,80,100,.07);
+      --shadow-lg: 0 8px 40px rgba(180,80,100,.12);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--dark); font-family: var(--sans); font-weight: 400; overflow-x: hidden; }
+    .announce-bar { background: var(--pink); color: #fff; text-align: center; padding: .55rem 1rem; font-size: .8rem; font-weight: 700; letter-spacing: .04em; }
+    .announce-bar a { color: #fff; text-decoration: underline; }
+    nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 2px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: .9rem 5%; box-shadow: 0 2px 12px rgba(180,80,100,.06); }
+    .nav-logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; }
+    .nav-logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--pink), var(--pink-lt)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .nav-logo-text { font-family: var(--serif); font-size: 1.15rem; font-weight: 900; color: var(--dark); line-height: 1.1; }
+    .nav-logo-text span { display: block; font-family: var(--sans); font-size: .65rem; font-weight: 700; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { font-size: .82rem; font-weight: 700; color: var(--brown); text-decoration: none; letter-spacing: .02em; transition: color .2s; }
+    .nav-links a:hover { color: var(--pink); }
+    .nav-order { display: flex; align-items: center; gap: .5rem; background: #25d366; color: #fff; border: none; padding: .6rem 1.2rem; border-radius: 8px; font-family: var(--sans); font-size: .8rem; font-weight: 800; cursor: pointer; text-decoration: none; transition: background .2s, transform .15s; }
+    .nav-order:hover { background: #1da851; transform: scale(1.03); }
+    #hero { background: var(--bg2); padding: 4.5rem 5% 0; overflow: hidden; position: relative; }
+    #hero::before { content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, var(--blush) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: flex-end; position: relative; z-index: 1; }
+    .hero-text { padding-bottom: 4rem; }
+    .hero-badge { display: inline-flex; align-items: center; gap: .4rem; background: var(--blush); color: var(--pink-dk); font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: .3rem .8rem; border-radius: 100px; margin-bottom: 1.2rem; border: 1.5px solid var(--pink-lt); }
+    h1 { font-family: var(--serif); font-size: clamp(2.6rem, 5.5vw, 4.2rem); font-weight: 900; line-height: 1.05; color: var(--dark); margin-bottom: 1rem; }
+    h1 em { font-style: italic; color: var(--pink); }
+    .hero-desc { font-size: 1rem; color: var(--brown); line-height: 1.7; margin-bottom: 2rem; max-width: 380px; }
+    .hero-ctas { display: flex; gap: .8rem; flex-wrap: wrap; }
+    .btn-pink { display: inline-flex; align-items: center; gap: .5rem; background: var(--pink); color: #fff; padding: .85rem 1.8rem; border-radius: var(--radius); font-weight: 800; font-size: .9rem; text-decoration: none; border: none; cursor: pointer; transition: background .2s, transform .15s; box-shadow: 0 4px 16px rgba(201,122,138,.3); }
+    .btn-pink:hover { background: var(--pink-dk); transform: translateY(-2px); }
+    .btn-outline { display: inline-flex; align-items: center; gap: .5rem; border: 2px solid var(--border); color: var(--brown); padding: .85rem 1.8rem; border-radius: var(--radius); font-weight: 700; font-size: .9rem; text-decoration: none; transition: border-color .2s, color .2s; }
+    .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
+    .hero-trust { display: flex; gap: 1.5rem; margin-top: 1.8rem; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: .4rem; font-size: .78rem; font-weight: 700; color: var(--brown); }
+    .trust-item span { font-size: 1rem; }
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: flex-end; }
+    .hero-plate { width: 340px; height: 340px; background: linear-gradient(135deg, var(--blush) 0%, var(--pink-lt) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9rem; overflow: hidden; box-shadow: 0 16px 60px rgba(201,122,138,.25); animation: float 3.5s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    .hero-pill { position: absolute; background: var(--white); border-radius: 100px; padding: .55rem 1rem; display: flex; align-items: center; gap: .4rem; font-size: .78rem; font-weight: 800; box-shadow: var(--shadow-lg); white-space: nowrap; border: 1.5px solid var(--border); }
+    .pill-1 { top: 20px; right: -20px; }
+    .pill-2 { bottom: 60px; left: -30px; }
+    .pill-3 { top: 120px; left: -40px; }
+    .pill-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-green { background: #16a34a; }
+    .dot-pink  { background: var(--pink); }
+    .dot-gold  { background: var(--gold); }
+    #menu { padding: 5rem 5%; }
+    .menu-header { text-align: center; margin-bottom: 2.5rem; }
+    .section-eyebrow { display: inline-block; font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--pink); margin-bottom: .6rem; }
+    h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: var(--dark); line-height: 1.15; }
+    h2 em { font-style: italic; color: var(--pink); }
+    .menu-cats { display: flex; justify-content: center; flex-wrap: wrap; gap: .5rem; margin-bottom: 2.5rem; }
+    .cat-btn { padding: .5rem 1.2rem; border-radius: 100px; border: 2px solid var(--border); background: var(--white); font-family: var(--sans); font-size: .8rem; font-weight: 700; color: var(--brown); cursor: pointer; transition: all .2s; }
+    .cat-btn.active, .cat-btn:hover { background: var(--pink); border-color: var(--pink); color: #fff; }
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; max-width: 1100px; margin: 0 auto; }
+    .menu-card { background: var(--white); border: 2px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform .2s, box-shadow .2s, border-color .2s; }
+    .menu-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--pink-lt); }
+    .menu-card-img { background: var(--bg3); height: 160px; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; position: relative; overflow: hidden; }
+    .badge { position: absolute; top: .7rem; left: .7rem; font-size: .65rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 6px; }
+    .badge-pink  { background: var(--pink); color: #fff; }
+    .badge-gold  { background: var(--gold); color: #fff; }
+    .badge-blush { background: var(--blush); color: var(--pink-dk); border: 1px solid var(--pink-lt); }
+    .badge-dark  { background: var(--dark); color: #fff; }
+    .menu-card-body { padding: 1rem 1.1rem 1.2rem; }
+    .menu-card-name { font-size: .98rem; font-weight: 800; color: var(--dark); margin-bottom: .25rem; }
+    .menu-card-desc { font-size: .78rem; color: var(--muted); line-height: 1.55; margin-bottom: .8rem; }
+    .menu-card-footer { display: flex; align-items: center; justify-content: space-between; }
+    .menu-card-price { font-size: 1.05rem; font-weight: 900; color: var(--pink); }
+    .menu-card-price .per { font-size: .72rem; font-weight: 600; color: var(--muted); }
+    .order-btn { background: var(--pink); color: #fff; border: none; border-radius: 8px; padding: .4rem .9rem; font-family: var(--sans); font-size: .75rem; font-weight: 800; cursor: pointer; transition: background .2s; }
+    .order-btn:hover { background: var(--pink-dk); }
+    #social { background: var(--bg2); border-top: 2px solid var(--border); border-bottom: 2px solid var(--border); padding: 4rem 5%; text-align: center; }
+    .social-header { margin-bottom: 2rem; }
+    .insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: .6rem; max-width: 900px; margin: 0 auto 2rem; }
+    .insta-cell { aspect-ratio: 1; background: var(--bg3); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 2px solid var(--border); overflow: hidden; transition: transform .2s; cursor: pointer; position: relative; }
+    .insta-cell::after { content: '❤️ ' attr(data-likes); position: absolute; inset: 0; background: rgba(201,122,138,.88); color: #fff; font-size: .72rem; font-weight: 800; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s; border-radius: 8px; }
+    .insta-cell:hover { transform: scale(.96); }
+    .insta-cell:hover::after { opacity: 1; }
+    .insta-follow { display: inline-flex; align-items: center; gap: .6rem; background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); color: #fff; padding: .75rem 1.8rem; border-radius: 10px; font-weight: 800; font-size: .9rem; text-decoration: none; transition: opacity .2s; }
+    .insta-follow:hover { opacity: .88; }
+    #preorder { background: var(--blush); border-top: 2px solid var(--border); border-bottom: 2px solid var(--border); padding: 3.5rem 5%; text-align: center; position: relative; overflow: hidden; }
+    #preorder::before, #preorder::after { content: '🎂'; position: absolute; font-size: 6rem; opacity: .12; }
+    #preorder::before { top: -1rem; left: 2rem; transform: rotate(-20deg); }
+    #preorder::after  { bottom: -1rem; right: 2rem; transform: rotate(20deg); }
+    .preorder-inner { position: relative; z-index: 1; }
+    .preorder-tag { display: inline-block; background: var(--pink); color: #fff; font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .25rem .7rem; border-radius: 6px; margin-bottom: .8rem; }
+    #preorder h2 { font-size: clamp(1.8rem, 4vw, 3rem); color: var(--dark); margin-bottom: .8rem; }
+    #preorder p { color: var(--brown); font-size: .95rem; line-height: 1.65; max-width: 500px; margin: 0 auto 1.8rem; font-weight: 600; }
+    .preorder-ctas { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+    .btn-dark { display: inline-flex; align-items: center; gap: .5rem; background: var(--dark); color: #fff; padding: .85rem 1.8rem; border-radius: var(--radius); font-weight: 800; font-size: .9rem; text-decoration: none; transition: background .2s; }
+    .btn-dark:hover { background: var(--brown); }
+    .btn-wapp { display: inline-flex; align-items: center; gap: .5rem; background: #25d366; color: #fff; padding: .85rem 1.8rem; border-radius: var(--radius); font-weight: 800; font-size: .9rem; text-decoration: none; transition: background .2s; }
+    .btn-wapp:hover { background: #1da851; }
+    #reviews { padding: 5rem 5%; }
+    .reviews-header { text-align: center; margin-bottom: 2.5rem; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; max-width: 1000px; margin: 0 auto; }
+    .review-card { background: var(--white); border: 2px solid var(--border); border-radius: var(--radius); padding: 1.4rem; }
+    .review-stars { font-size: 1rem; margin-bottom: .6rem; }
+    .review-text { font-size: .88rem; color: var(--brown); line-height: 1.65; margin-bottom: 1rem; font-style: italic; }
+    .review-author { display: flex; align-items: center; gap: .7rem; }
+    .review-ava { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; background: var(--bg3); border: 2px solid var(--border); }
+    .review-name { font-size: .85rem; font-weight: 800; color: var(--dark); }
+    .review-via  { font-size: .72rem; color: var(--muted); }
+    #contact { background: var(--dark); color: var(--bg); padding: 5rem 5%; }
+    .contact-inner { max-width: 700px; margin: 0 auto; }
+    .contact-inner h2 { color: var(--bg); margin-bottom: .4rem; text-align: center; }
+    .contact-inner h2 em { color: var(--pink-lt); }
+    .contact-intro { color: var(--muted); font-size: .9rem; margin-bottom: 2rem; text-align: center; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-field { margin-bottom: .9rem; }
+    .form-field label { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .35rem; }
+    .form-field input, .form-field select, .form-field textarea { width: 100%; background: rgba(255,255,255,.07); border: 1.5px solid rgba(255,255,255,.12); color: var(--bg); font-family: var(--sans); font-size: .88rem; padding: .7rem .9rem; border-radius: 8px; outline: none; transition: border-color .2s; }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--pink-lt); }
+    .form-field textarea { resize: vertical; min-height: 90px; }
+    .form-field select option { background: var(--dark); }
+    .btn-submit-pink { width: 100%; padding: .85rem; background: var(--pink); color: #fff; border: none; border-radius: 10px; font-family: var(--sans); font-size: .88rem; font-weight: 900; cursor: pointer; transition: background .2s; margin-top: .3rem; }
+    .btn-submit-pink:hover { background: var(--pink-dk); }
+    .contact-socials { display: flex; gap: .7rem; margin-top: 2rem; justify-content: center; }
+    .social-btn { padding: .55rem 1.1rem; border-radius: 8px; font-size: .78rem; font-weight: 800; text-decoration: none; transition: opacity .2s; }
+    .social-btn:hover { opacity: .8; }
+    .sb-ig { background: linear-gradient(135deg, #f58529, #dd2a7b); color: #fff; }
+    .sb-wa { background: #25d366; color: #fff; }
+    footer { background: #1a0d0d; padding: 1.8rem 5%; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.06); }
+    .footer-logo { display: flex; align-items: center; gap: .5rem; text-decoration: none; }
+    .footer-logo-icon { width: 28px; height: 28px; background: linear-gradient(135deg, var(--pink), var(--pink-lt)); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: .85rem; }
+    .footer-logo span { font-family: var(--serif); font-size: 1rem; font-weight: 900; color: #fff; }
+    .footer-copy { font-size: .75rem; color: #666; }
+    .footer-links { display: flex; gap: 1.2rem; }
+    .footer-links a { font-size: .75rem; color: #666; text-decoration: none; }
+    .footer-links a:hover { color: var(--pink-lt); }
+    .float-wa { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200; width: 56px; height: 56px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 4px 20px rgba(37,211,102,.45); text-decoration: none; transition: transform .2s; animation: wa-pulse 2.5s ease-in-out infinite; }
+    .float-wa:hover { transform: scale(1.1); }
+    @keyframes wa-pulse { 0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,.45); } 50% { box-shadow: 0 4px 32px rgba(37,211,102,.7); } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-text { padding-bottom: 0; }
+      .hero-visual { padding-top: 1rem; justify-content: center; }
+      .hero-plate { width: 240px; height: 240px; font-size: 6rem; }
+      .pill-1, .pill-2, .pill-3 { display: none; }
+      .insta-grid { grid-template-columns: repeat(3, 1fr); }
+      .nav-links { display: none; }
+      #hero { padding-top: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="announce-bar">
+  🎂 Slot pre-order weekend ini hampir penuh! DM <a href="https://instagram.com/laclair.sby">@laclair.sby</a> atau WhatsApp sekarang.
+</div>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🎂</div>
+    <div class="nav-logo-text">La Clair<span>Custom Cakes · Surabaya</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#menu">Our Cakes</a></li>
+    <li><a href="#social">Gallery</a></li>
+    <li><a href="#preorder">Pre-order</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/6283893548278" class="nav-order" target="_blank">📲 Order via WhatsApp</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text reveal">
+      <div class="hero-badge">🎀 Pre-order Now Open</div>
+      <h1>Custom Cakes Made with <em>Love & Detail</em></h1>
+      <p class="hero-desc">Birthday cakes, event cakes, and sweet surprises — handcrafted to order in Surabaya. Each cake is made fresh, just for you.</p>
+      <div class="hero-ctas">
+        <a href="#menu" class="btn-pink">🎂 See Our Cakes</a>
+        <a href="#preorder" class="btn-outline">📅 How to Order</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span>⭐</span> 5.0 Rating</div>
+        <div class="trust-item"><span>🎂</span> 300+ Cakes Made</div>
+        <div class="trust-item"><span>📍</span> Surabaya</div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="hero-plate">
+		<img src="images/ayam.jpg" style="width:100%; height:100%; object-fit:cover; border-radius:50%;"/>
+	</div>
+      <div class="hero-pill pill-1"><div class="pill-dot dot-green"></div>Orders Open!</div>
+      <div class="hero-pill pill-2">🎀 Custom designs</div>
+      <div class="hero-pill pill-3">⏰ Order 3 days ahead</div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="menu-header reveal">
+    <p class="section-eyebrow">Our Cakes</p>
+    <h2>Made Fresh,<br><em>Made for You</em></h2>
+  </div>
+  <div class="menu-cats">
+    <button class="cat-btn active">All</button>
+    <button class="cat-btn">Birthday</button>
+    <button class="cat-btn">Custom Design</button>
+    <button class="cat-btn">Cupcakes</button>
+    <button class="cat-btn">Event &amp; Bulk</button>
+  </div>
+  <div class="menu-grid reveal">
+    <div class="menu-card">
+      <div class="menu-card-img">
+		<img src="images/ayam.jpg" style="width:100%; height:100%; object-fit:cover;"/>
+	  <span class="badge badge-pink">Best Seller</span></div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Angry Bird Cake</div>
+        <div class="menu-card-desc">Moist sponge cake , chocolate ganache, custom name &amp; message topping.</div>
+        <div class="menu-card-footer">
+          <div class="menu-card-price">Rp 385k <span class="per">/ 18cm</span></div>
+          <button class="order-btn" onclick="window.open('https://wa.me/6283893548278?text=Hii La Clair! Mau pesan Classic Birthday Cake')">Order</button>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-img">🌸<span class="badge badge-gold">Premium</span></div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Floral Buttercream Cake</div>
+        <div class="menu-card-desc">Hand-piped flower decorations, Swiss meringue buttercream, fully custom colour.</div>
+        <div class="menu-card-footer">
+          <div class="menu-card-price">Rp 275k <span class="per">/ 18cm</span></div>
+          <button class="order-btn" onclick="window.open('https://wa.me/6283893548278?text=Hii La Clair! Mau pesan Floral Buttercream Cake')">Order</button>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-img">🍰<span class="badge badge-blush">Fan Fave</span></div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Strawberry Cream Cake</div>
+        <div class="menu-card-desc">Fresh strawberries, light whipped cream, soft chiffon sponge. Classic &amp; elegant.</div>
+        <div class="menu-card-footer">
+          <div class="menu-card-price">Rp 210k <span class="per">/ 18cm</span></div>
+          <button class="order-btn" onclick="window.open('https://wa.me/6283893548278?text=Hii La Clair! Mau pesan Strawberry Cream Cake')">Order</button>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-img">🍫</div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Dark Chocolate Ganache</div>
+        <div class="menu-card-desc">Rich chocolate sponge, silky ganache drip, topped with chocolate truffles.</div>
+        <div class="menu-card-footer">
+          <div class="menu-card-price">Rp 230k <span class="per">/ 18cm</span></div>
+          <button class="order-btn" onclick="window.open('https://wa.me/6283893548278?text=Hii La Clair! Mau pesan Dark Chocolate Ganache')">Order</button>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-img">🧁<span class="badge badge-blush">Custom</span></div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Birthday Cupcake Box</div>
+        <div class="menu-card-desc">Box of 6 or 12 cupcakes with custom frosting, toppers, and gift packaging.</div>
+        <div class="menu-card-footer">
+          <div class="menu-card-price">Rp 95k <span class="per">/ 6 pcs</span></div>
+          <button class="order-btn" onclick="window.open('https://wa.me/6283893548278?text=Hii La Clair! Mau pesan Birthday Cupcake Box')">Order</button>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-img">🎨<span class="badge badge-dark">Full Custom</span></div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Custom Theme Cake</div>
+        <div class="menu-card-desc">Your design, your theme — cartoon, aesthetic, photo print, or 3D topper. DM to discuss!</div>
+        <div class="menu-card-footer">
+          <div class="menu-card-price">Rp 320k+ <span class="per">/ 18cm</span></div>
+          <button class="order-btn" onclick="window.open('https://wa.me/6283893548278?text=Hii La Clair! Mau tanya soal Custom Theme Cake')">Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="social">
+  <div class="social-header reveal">
+    <p class="section-eyebrow">Follow Along</p>
+    <h2>Find Us on <em>Instagram</em> 📸</h2>
+    <p style="color:var(--muted);font-size:.88rem;margin-top:.5rem;">Daily updates, new designs &amp; promos — <strong>@laclair.sby</strong></p>
+  </div>
+  <div class="insta-grid reveal">
+    <div class="insta-cell" data-likes="412">🎂</div>
+    <div class="insta-cell" data-likes="389">🌸</div>
+    <div class="insta-cell" data-likes="521">🍰</div>
+    <div class="insta-cell" data-likes="276">🧁</div>
+    <div class="insta-cell" data-likes="468">🍫</div>
+    <div class="insta-cell" data-likes="334">🎨</div>
+  </div>
+  <a href="https://instagram.com/laclair.sby" target="_blank" class="insta-follow">📸 Follow @laclair.sby</a>
+</section>
+
+<section id="preorder">
+  <div class="preorder-inner">
+    <span class="preorder-tag">Pre-order Open</span>
+    <h2>Order <em>3 Days Ahead</em><br>&amp; We'll Make It Perfect 🎀</h2>
+    <p>All cakes are made fresh to order — no ready stock. Place your order at least 3 days before your event so we can craft every detail with care.</p>
+    <div class="preorder-ctas">
+      <a href="https://wa.me/6283893548278?text=Hii La Clair! Mau pesan kue" target="_blank" class="btn-wapp">💬 Order via WhatsApp</a>
+      <a href="https://instagram.com/laclair.sby" target="_blank" class="btn-dark">📸 DM on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="reviews-header reveal">
+    <p class="section-eyebrow">What Customers Say</p>
+    <h2>Happy <em>Customers</em> 🎀</h2>
+  </div>
+  <div class="reviews-grid reveal">
+    <div class="review-card">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <p class="review-text">"Ordered a floral cake for my best friend's birthday and it was STUNNING. Tasted even better than it looked. Everyone at the party was asking who made it!"</p>
+      <div class="review-author"><div class="review-ava">👩</div><div><div class="review-name">Devina R.</div><div class="review-via">via Instagram DM</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <p class="review-text">"Pesan custom theme cake karakter anime buat adek dan hasilnya mirip banget! Respon cepat, packaging cantik, dan on-time. Recommended banget!"</p>
+      <div class="review-author"><div class="review-ava">👧</div><div><div class="review-name">Aira S.</div><div class="review-via">via WhatsApp</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <p class="review-text">"The strawberry cream cake was absolutely perfect for our office celebration. Light, not too sweet, and looked beautiful. Will definitely reorder!"</p>
+      <div class="review-author"><div class="review-ava">👩</div><div><div class="review-name">Melissa T.</div><div class="review-via">via Instagram</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <p class="review-text">"Sudah 3x pesan dan selalu puas. Kue enak, tampilan aesthetic, harga masuk akal. La Clair is my go-to for every celebration!"</p>
+      <div class="review-author"><div class="review-ava">🧑</div><div><div class="review-name">Bintang W.</div><div class="review-via">via Google</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-inner reveal">
+    <h2>Send Us a <em>Message</em></h2>
+    <p class="contact-intro">Pertanyaan, custom request, atau apapun — kami balas dalam beberapa jam!</p>
+    <div class="form-row">
+      <div class="form-field"><label>Your Name</label><input type="text" placeholder="Nama kamu"/></div>
+      <div class="form-field"><label>Phone / WhatsApp</label><input type="tel" placeholder="08xxxxxxxxxx"/></div>
+    </div>
+    <div class="form-field">
+      <label>What are you ordering?</label>
+      <select>
+        <option>Birthday Cake</option>
+        <option>Custom Theme Cake</option>
+        <option>Cupcake Box</option>
+        <option>Bulk / Event Order</option>
+        <option>Just have a question</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <div class="form-field"><label>Event Date</label><input type="date"/></div>
+      <div class="form-field">
+        <label>Cake Size</label>
+        <select>
+          <option>15cm (serves ~8)</option>
+          <option>18cm (serves ~12)</option>
+          <option>20cm (serves ~16)</option>
+          <option>Custom / Not sure yet</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-field"><label>Message / Design Reference</label><textarea placeholder="Ceritain tema, warna, tulisan di kue, atau referensi desain kamu 🎂"></textarea></div>
+    <button class="btn-submit-pink">📨 Send Order Inquiry</button>
+    <div class="contact-socials">
+      <a href="https://instagram.com/laclair.sby" target="_blank" class="social-btn sb-ig">📸 @laclair.sby</a>
+      <a href="https://wa.me/6283893548278" target="_blank" class="social-btn sb-wa">💬 083893548278</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="footer-logo">
+    <div class="footer-logo-icon">🎂</div>
+    <span>La Clair Surabaya</span>
+  </a>
+  <p class="footer-copy">© 2025 La Clair Surabaya · Handcrafted with 🩷</p>
+  <div class="footer-links">
+    <a href="#menu">Our Cakes</a>
+    <a href="#preorder">Pre-order</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<a href="https://wa.me/6283893548278?text=Hii La Clair! Mau pesan kue" class="float-wa" target="_blank" title="Order via WhatsApp">💬</a>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => obs.observe(r));
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
